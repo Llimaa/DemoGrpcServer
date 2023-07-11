@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "DemoGrpcServer";
+
+package counter;
+
+service Counter {
+  // Sends a greeting
+  rpc Count (CountRequest) returns (CountResponse);
+  rpc CountStream (CountRequest) returns (stream CountResponseItem);
+}
+
+message CountRequest {
+  int32 startWith = 1;
+  int32 endWith = 2;
+}
+
+message CountResponse {
+  repeated CountValue value = 1;
+}
+
+message CountResponseItem {
+  int32 value = 1;
+}
+
+message CountValue {
+  int32 value = 1;
+}
